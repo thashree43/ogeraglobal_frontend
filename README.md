@@ -9,3 +9,4 @@ Currently, two official plugins are available:
 # ogerawebsitefrontent
 # ogerawebsitefrontent
 # ogerawebsitefrontent
+# ogeraglobal_frontend
