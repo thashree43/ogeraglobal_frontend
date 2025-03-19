@@ -1,0 +1,88 @@
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+      .navbar {
+        background-color: #D1111C !important;
+      }
+
+      .container-fluid {
+        background-color: #D1111C;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between; /* Align logo to left and nav to right */
+        align-items: center; /* Vertically align the content */
+      }
+
+      .navbar-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-decoration: none;
+        padding: 0;
+      }
+
+      .logo-text {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 3rem;
+        color: #FFFFFF;
+        text-transform: lowercase;
+        line-height: 1;
+      }
+
+      .tagline {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400;
+        font-size: 0.875rem;
+        color: #FFFFFF;
+        text-transform: lowercase;
+      }
+
+      .navbar-nav {
+        margin-left: auto; /* Push nav links to the right */
+      }
+
+      .navbar-nav .nav-link {
+        color: #FFFFFF !important;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400;
+        margin: 0 1rem;
+        transition: opacity 0.2s ease;
+      }
+
+      .navbar-nav .nav-link:hover {
+         opacity: 0.8;
+      }
+
+      .navbar-toggler {
+        border-color: #FFFFFF;
+      }
+
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+      }
+      .navbar-nav {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+      }
+      
+      .navbar-collapse {
+        display: flex !important;
+        justify-content: flex-end; /* Moves links to the right */
+      }
+      .navbar-collapse {
+        display: flex !important;
+        justify-content: flex-end !important;
+      }
+      
+      .navbar-nav {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+      .navbar-nav .nav-link {
+        color: white !important;
+      }
+            
