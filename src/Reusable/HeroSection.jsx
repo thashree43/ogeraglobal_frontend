@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const HeroComponent = ({backimage}) => {
+const HeroComponent = ({ backimage }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -15,58 +15,58 @@ const HeroComponent = ({backimage}) => {
   };
 
   return (
-    <div className="relative w-full h-[50vh] overflow-hidden bg-gray-900">
+    <div className={`relative h-screen w-full overflow-hidden transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       {/* Background image */}
-      <div className="absolute inset-0 w-full h-full">
-        <img
-          src={backimage}
-          alt="OGERA Home Appliances"
-          className="w-full h-full object-cover opacity-50"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/70 to-transparent"></div>
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ 
+          backgroundImage: `url(${backimage || "/api/placeholder/1920/1080"})`,
+        }}
+      >
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       </div>
-
+      
       {/* Content container */}
-      <div className="relative h-full w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
-        <div
-          className={`max-w-lg transition-all duration-1000 transform ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          }`}
-        >
-          <h1 className="text-5xl font-bold text-white leading-tight mb-4">
+      <div className="relative flex h-full items-center justify-center px-4 md:px-8">
+        <div className="text-center max-w-3xl">
+          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6">
             Smart Home Solutions for Modern Living
           </h1>
-          <p className="text-xl text-gray-200 mb-8">
-            Discover OGERA's premium range of Electronics & Home appliances designed to make
+          <p className="text-lg md:text-xl text-gray-200 mb-8 md:mb-10">
+            Discover OGERA's premium range of Electronics & Home appliances designed to make 
             your life easier, smarter, and more efficient.
           </p>
-          <div className="flex">
-            <button
-              onClick={scrollToContent}
-              className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition duration-300 shadow-lg hover:shadow-xl"
-            >
-              Explore Products
-            </button>
-          </div>
+          <button 
+            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg text-lg transition-colors duration-300"
+            onClick={scrollToContent}
+          >
+            Explore Products
+          </button>
         </div>
       </div>
-
+      
       {/* Scroll down button */}
-      <div
-        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 ${
-          isVisible ? "opacity-100" : "opacity-0"
-        }`}
-        style={{ transitionDelay: "600ms" }}
-      >
-        <button
+      <div className="absolute bottom-8 left-0 right-0 flex justify-center animate-bounce">
+        <button 
+          className="text-white flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity duration-300"
           onClick={scrollToContent}
-          className="flex flex-col items-center text-white hover:text-red-400 transition duration-300"
-          aria-label="Scroll down"
         >
-          <span className="text-sm font-medium mb-2">Scroll Down</span>
-          <div className="w-8 h-12 border-2 border-white hover:border-red-400 rounded-full flex justify-center p-1 transition duration-300">
-            <div className="w-1 h-3 bg-white hover:bg-red-400 rounded-full animate-bounce mt-1 transition duration-300"></div>
-          </div>
+          <span className="mb-2 text-sm md:text-base">Scroll Down</span>
+          <svg 
+            className="w-6 h-6" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24" 
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth="2" 
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            ></path>
+          </svg>
         </button>
       </div>
     </div>

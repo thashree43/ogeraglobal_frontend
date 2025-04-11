@@ -2,8 +2,8 @@ import React from 'react';
 import Header from '../../layouts/Header';
 import Footer from '../../layouts/Footer';
 import backimage from "../../Images/Ogera_Logo.png";
-import chairman from "../../Images/chairman.jpeg"
-import Quality from "../../Images/Quality.jpeg"
+import CEO from "../../Images/CEO.jpg"
+import Quality from "../../Images/qualitylogo.jpg"
 import company from "../../Images/company.webp"
 import corporate from "../../Images/Corporate.webp"
 import team from "../../Images/teamleads.webp"
@@ -352,7 +352,7 @@ const ChairmanMessage = () => {
           <div className="md:w-1/3 mb-8 md:mb-0">
             <div className="relative">
               <img 
-                src={chairman}
+                src={CEO}
                 alt="Chairman" 
                 className="rounded-lg shadow-lg w-full"
               />
@@ -383,11 +383,7 @@ const ChairmanMessage = () => {
               
               <div className="mt-6 flex justify-end">
                 <div className="text-right">
-                  <img 
-                    src="/api/placeholder/200/80" 
-                    alt="Chairman's Signature" 
-                    className="ml-auto mb-2 h-16 object-contain"
-                  />
+                
                   <p className="text-gray-800 font-medium">Shamsudheen Olakara</p>
                   <p className="text-gray-600 text-sm">Chairman & Founder</p>
                 </div>

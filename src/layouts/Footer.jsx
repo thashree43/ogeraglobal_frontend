@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
@@ -9,147 +10,223 @@ import {
 import {
   faHouse,
   faPhone,
-  faEnvelope
+  faEnvelope,
+  faChevronDown,
+  faChevronUp
 } from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => {
+  // State for mobile accordions
+  const [openSection, setOpenSection] = useState(null);
+
+  const toggleSection = (section) => {
+    if (openSection === section) {
+      setOpenSection(null);
+    } else {
+      setOpenSection(section);
+    }
+  };
+
   return (
     <footer
-      className="text-center text-lg-start text-white w-100"
+      className="text-center md:text-left text-white w-full"
       style={{ backgroundColor: "#040404" }}
     >
+      {/* Social media banner */}
       <section
-        className="d-flex justify-content-between p-4"
+        className="flex flex-col md:flex-row justify-between items-center p-3 md:p-4"
         style={{ backgroundColor: "#D1111C" }}
       >
-        <div className="me-5 ms-4">
-          <span>Get connected with us on social networks:</span>
+        <div className="mb-3 md:mb-0 md:ml-4">
+          <span className="text-sm md:text-base">Get connected with us on social networks:</span>
         </div>
 
-        <div className="me-4">
+        <div className="md:mr-4 flex space-x-4">
           <a
             href="https://www.facebook.com/share/1BFY79FyQi/?mibextid=wwXIfr"
-            className="text-white me-4"
-            target="_blank" rel="noopener noreferrer"
+            className="text-white hover:text-gray-200"
+            target="_blank" 
+            rel="noopener noreferrer"
+            aria-label="Facebook"
           >
             <FontAwesomeIcon icon={faFacebook} />
           </a>
           <a
             href="https://x.com/ogeraglobal"
-            className="text-white me-4"
-            target="_blank" rel="noopener noreferrer"
+            className="text-white hover:text-gray-200"
+            target="_blank" 
+            rel="noopener noreferrer"
+            aria-label="Twitter"
           >
             <FontAwesomeIcon icon={faTwitter} />
           </a>
           <a
             href="https://www.instagram.com/ogeraglobal?igsh=MXdlY200dWx4ZDU5aw=="
-            className="text-white me-4"
-            target="_blank" rel="noopener noreferrer"
+            className="text-white hover:text-gray-200"
+            target="_blank" 
+            rel="noopener noreferrer"
+            aria-label="Instagram"
           >
             <FontAwesomeIcon icon={faInstagram} />
           </a>
           <a
             href="https://www.linkedin.com/in/ogera-global-b5805b347/"
-            className="text-white me-4"
-            target="_blank" rel="noopener noreferrer"
+            className="text-white hover:text-gray-200"
+            target="_blank" 
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
           >
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
           <a
             href="https://youtube.com/@ogeraglobal?si=TYB-of4WCYY_KeCG"
-            className="text-white me-4"
-            target="_blank" rel="noopener noreferrer"
+            className="text-white hover:text-gray-200"
+            target="_blank" 
+            rel="noopener noreferrer"
+            aria-label="YouTube"
           >
             <FontAwesomeIcon icon={faYoutube} />
           </a>
         </div>
       </section>
 
-      <section>
-        <div className="container text-center text-md-start mt-5">
-          <div className="row mt-3">
-            <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold">Company</h6>
+      {/* Main footer content */}
+      <section className="px-4 py-5 md:py-8">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Company Info - Always visible on mobile */}
+            <div className="mb-6 md:mb-0">
+              <h6 className="text-uppercase font-bold text-lg mb-2">Company</h6>
               <hr
-                className="mb-4 mt-0 d-inline-block mx-auto"
+                className="mb-4 mt-0 inline-block"
                 style={{ width: "60px", backgroundColor: "#D1111C", height: "2px" }}
               />
-              <p>
+              <p className="text-sm md:text-base">
                 QUALITY OGERA INTERNATIONAL LLP<br />
-                Door No.71423H, Kondotty,<br />
-                Kumminiparamaba PO,<br />
+                Door No.71423H, Kondotty,<br className="hidden md:block" />
+                Kumminiparamaba PO,<br className="hidden md:block" />
                 Malappuram, Kerala, 673638
               </p>
             </div>
 
-            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold">Products</h6>
+            {/* Products Section - Collapsible on mobile */}
+            <div className="mb-6 md:mb-0">
+              <div 
+                className="flex justify-between items-center cursor-pointer md:cursor-default"
+                onClick={() => toggleSection('products')}
+              >
+                <h6 className="text-uppercase font-bold text-lg mb-2">Products</h6>
+                <FontAwesomeIcon 
+                  icon={openSection === 'products' ? faChevronUp : faChevronDown} 
+                  className="md:hidden" 
+                />
+              </div>
               <hr
-                className="mb-4 mt-0 d-inline-block mx-auto"
+                className="mb-4 mt-0 inline-block"
                 style={{ width: "60px", backgroundColor: "#D1111C", height: "2px" }}
               />
-              <p><a href="/Shop" className="text-white">Electronics</a></p>
-              <p><a href="/Shop" className="text-white">Consumer Goods</a></p>
-              <p><a href="/Shop" className="text-white">Technology</a></p>
-              <p><a href="/Shop" className="text-white">View All Products</a></p>
+              <div className={`${openSection === 'products' || window.innerWidth >= 768 ? 'block' : 'hidden'} md:block`}>
+                <p className="mb-2"><a href="/Shop" className="text-white hover:text-gray-300 text-sm md:text-base">Electronics</a></p>
+                <p className="mb-2"><a href="/Shop" className="text-white hover:text-gray-300 text-sm md:text-base">Consumer Goods</a></p>
+                <p className="mb-2"><a href="/Shop" className="text-white hover:text-gray-300 text-sm md:text-base">Technology</a></p>
+                <p className="mb-2"><a href="/Shop" className="text-white hover:text-gray-300 text-sm md:text-base">View All Products</a></p>
+              </div>
             </div>
 
-            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold">Quick Links</h6>
+            {/* Quick Links - Collapsible on mobile */}
+            <div className="mb-6 md:mb-0">
+              <div 
+                className="flex justify-between items-center cursor-pointer md:cursor-default"
+                onClick={() => toggleSection('links')}
+              >
+                <h6 className="text-uppercase font-bold text-lg mb-2">Quick Links</h6>
+                <FontAwesomeIcon 
+                  icon={openSection === 'links' ? faChevronUp : faChevronDown} 
+                  className="md:hidden" 
+                />
+              </div>
               <hr
-                className="mb-4 mt-0 d-inline-block mx-auto"
+                className="mb-4 mt-0 inline-block"
                 style={{ width: "60px", backgroundColor: "#D1111C", height: "2px" }}
               />
-              <p><a href="/Aboutus" className="text-white">About Us</a></p>
-              <p><a href="/careers" className="text-white">Careers</a></p>
-              <p><a href="/Support" className="text-white">Services</a></p>
-              <p><a href="/Support" className="text-white">Contact Us</a></p>
+              <div className={`${openSection === 'links' || window.innerWidth >= 768 ? 'block' : 'hidden'} md:block`}>
+                <p className="mb-2"><a href="/Aboutus" className="text-white hover:text-gray-300 text-sm md:text-base">About Us</a></p>
+                <p className="mb-2"><a href="/careers" className="text-white hover:text-gray-300 text-sm md:text-base">Careers</a></p>
+                <p className="mb-2"><a href="/Support" className="text-white hover:text-gray-300 text-sm md:text-base">Services</a></p>
+                <p className="mb-2"><a href="/Support" className="text-white hover:text-gray-300 text-sm md:text-base">Contact Us</a></p>
+              </div>
             </div>
 
-            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-              <h6 className="text-uppercase fw-bold">Contact</h6>
+            {/* Contact - Collapsible on mobile */}
+            <div className="mb-6 md:mb-0">
+              <div 
+                className="flex justify-between items-center cursor-pointer md:cursor-default"
+                onClick={() => toggleSection('contact')}
+              >
+                <h6 className="text-uppercase font-bold text-lg mb-2">Contact</h6>
+                <FontAwesomeIcon 
+                  icon={openSection === 'contact' ? faChevronUp : faChevronDown} 
+                  className="md:hidden" 
+                />
+              </div>
               <hr
-                className="mb-4 mt-0 d-inline-block mx-auto"
+                className="mb-4 mt-0 inline-block"
                 style={{ width: "60px", backgroundColor: "#D1111C", height: "2px" }}
               />
-              
-              <p>
-                <a href="https://www.google.com/maps?q=Kondotty,+Kerala+673638,+India" 
-                   className="text-white" 
-                   target="_blank" 
-                   rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faHouse} style={{ color: "#e0e2e6" }} /> Kondotty, Kerala 673638, India
-                </a>
-              </p>
-              
-              <p>
-                <a href="mailto:info@ogera.com" className="text-white">
-                  <FontAwesomeIcon icon={faEnvelope} style={{ color: "#e2e6ee" }} /> info@ogera.com
-                </a>
-              </p>
-              
-              <p>
-                <a href="tel:+91XXXXXXXXXX" className="text-white">
-                  <FontAwesomeIcon icon={faPhone} style={{ color: "#f3f4f7" }} /> +91 XXXXXXXXXX
-                </a>
-              </p>
+              <div className={`${openSection === 'contact' || window.innerWidth >= 768 ? 'block' : 'hidden'} md:block`}>
+                <p className="mb-2">
+                  <a 
+                    href="https://www.google.com/maps?q=Kondotty,+Kerala+673638,+India" 
+                    className="text-white hover:text-gray-300 text-sm md:text-base flex items-center"
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <FontAwesomeIcon icon={faHouse} className="mr-2" /> 
+                    <span className="truncate">Kondotty, Kerala</span>
+                  </a>
+                </p>
+                
+                <p className="mb-2">
+                  <a 
+                    href="mailto:info@ogera.com" 
+                    className="text-white hover:text-gray-300 text-sm md:text-base flex items-center"
+                  >
+                    <FontAwesomeIcon icon={faEnvelope} className="mr-2" /> 
+                    <span>info@ogera.com</span>
+                  </a>
+                </p>
+                
+                <p className="mb-2">
+                  <a 
+                    href="tel:+91XXXXXXXXXX" 
+                    className="text-white hover:text-gray-300 text-sm md:text-base flex items-center"
+                  >
+                    <FontAwesomeIcon icon={faPhone} className="mr-2" /> 
+                    <span>+91 XXXXXXXXXX</span>
+                  </a>
+                </p>
 
-              <p>
-                <a href="/support" className="text-white">
-                  Customer Support
-                </a>
-              </p>
+                <p className="mb-2">
+                  <a 
+                    href="/support" 
+                    className="text-white hover:text-gray-300 text-sm md:text-base"
+                  >
+                    Customer Support
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Copyright */}
       <div
-        className="text-center p-3"
+        className="text-center p-3 text-sm"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
       >
         © 2025 Copyright:{" "}
-        <a className="text-white" href="/">
+        <a className="text-white hover:text-gray-300" href="/">
           Quality Ogera International LLP
         </a>
       </div>
